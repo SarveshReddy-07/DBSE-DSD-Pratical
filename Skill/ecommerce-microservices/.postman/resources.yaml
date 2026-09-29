@@ -1,0 +1,5 @@
+workspace:
+  id: b70c7ce5-01ef-4811-887b-9531fbbc01f3
+cloudResources:
+  collections:
+    ../postman/collections/E-Commerce Microservices: 58593964-e8091716-56c7-4ebf-9f9a-8aa0d4afdd17

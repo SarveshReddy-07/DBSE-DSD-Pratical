@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "anita@example.com",
+      "password": "Pass@123"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('JWT returned', function () {
+        pm.response.to.have.status(200);
+        pm.expect(pm.response.json().token).to.be.a('string');
+      });
+      pm.collectionVariables.set('token', pm.response.json().token);
+    language: text/javascript
+settings: {}
+order: 3000

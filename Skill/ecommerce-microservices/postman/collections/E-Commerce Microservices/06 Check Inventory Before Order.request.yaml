@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/inventory/{{productId}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: pm.test('Stock is available', function () { pm.expect(pm.response.json().availableQuantity).to.eql(10); });
+    language: text/javascript
+settings: {}
+order: 7000
