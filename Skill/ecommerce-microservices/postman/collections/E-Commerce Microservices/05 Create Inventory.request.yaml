@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/inventory"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "availableQuantity": 10
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Inventory starts at 10 available and 0 reserved', function () {
+        pm.response.to.have.status(200);
+        pm.expect(pm.response.json().availableQuantity).to.eql(10);
+        pm.expect(pm.response.json().reservedQuantity).to.eql(0);
+      });
+    language: text/javascript
+settings: {}
+order: 6000
