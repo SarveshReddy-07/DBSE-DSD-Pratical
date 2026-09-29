@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/inventory/{{productId}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Inventory is now 8 available and 2 reserved', function () {
+        pm.expect(pm.response.json().availableQuantity).to.eql(8);
+        pm.expect(pm.response.json().reservedQuantity).to.eql(2);
+      });
+    language: text/javascript
+settings: {}
+order: 9000

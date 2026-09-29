@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/products"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "A",
+      "category": "Electronics",
+      "price": -10
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Pydantic returns 422', function () { pm.response.to.have.status(422); });
+    language: text/javascript
+settings: {}
+order: 13000

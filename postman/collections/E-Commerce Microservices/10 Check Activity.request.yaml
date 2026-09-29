@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/activities"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('ORDER_CREATED activity exists', function () {
+        const orderId = pm.collectionVariables.get('orderId');
+        pm.expect(pm.response.json().some(a => a.action === 'ORDER_CREATED' && a.metadata.orderId === orderId)).to.be.true;
+      });
+    language: text/javascript
+settings: {}
+order: 11000

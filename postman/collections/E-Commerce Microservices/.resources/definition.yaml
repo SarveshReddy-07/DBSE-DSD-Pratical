@@ -1,0 +1,7 @@
+$kind: collection
+description: Step-by-step requests from the college guide. Run requests in order.
+variables:
+  userId: ""
+  token: ""
+  productId: ""
+  orderId: ""
